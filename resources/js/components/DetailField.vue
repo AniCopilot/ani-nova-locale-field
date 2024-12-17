@@ -1,6 +1,6 @@
 <template>
   <panel-item :field="field">
-    <template slot="value">
+    <template v-slot:value>
       <locale-options-list
         :field="field"
         :resource="resource"
@@ -13,17 +13,26 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
 import LocaleOptionsList from './LocaleOptionsList';
 import LocaleButton from './LocaleButton';
 
 export default {
   components: { LocaleOptionsList, LocaleButton },
   props: ['resource', 'resourceName', 'resourceId', 'field'],
-  mounted() {
-    const deleteButtonEl = document.querySelector('.content').querySelector('[dusk="open-delete-modal-button"]');
-    if (deleteButtonEl) {
-      deleteButtonEl.parentElement.insertBefore(this.$refs.localeButton.$el, deleteButtonEl);
-    }
+  setup() {
+    const localeButton = ref(null);
+
+    onMounted(() => {
+      const deleteButtonEl = document.querySelector('.content').querySelector('[dusk="open-delete-modal-button"]');
+      if (deleteButtonEl) {
+        deleteButtonEl.parentElement.insertBefore(localeButton.value.$el, deleteButtonEl);
+      }
+    });
+
+    return {
+      localeButton,
+    };
   },
 };
 </script>

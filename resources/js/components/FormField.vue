@@ -1,7 +1,7 @@
 <template>
   <div>
     <default-field :field="field" :errors="errors" v-if="!localePreviouslySet">
-      <template slot="field">
+      <template v-slot:field>
         <select
           name="locale"
           class="w-full form-control form-input form-input-bordered"
@@ -16,7 +16,7 @@
     </default-field>
 
     <default-field :field="{ name: 'Locale parent' }" :errors="errors" v-if="parentResourceName">
-      <template slot="field">
+      <template v-slot:field>
         <input
           type="text"
           :value="parentResourceName"

@@ -5,7 +5,8 @@
     "laravel",
     "nova",
     "optimistdigital",
-    "field"
+    "field",
+    "anninikolova"
   ],
   "authors": [
     {
@@ -22,7 +23,7 @@
   "license": "MIT",
   "require": {
     "php": ">=7.1.0",
-    "laravel/nova": "^2.0.11 || ^3.0"
+    "laravel/nova": "^2.0.11 || ^3.0 || ^4.0"
   },
   "autoload": {
     "psr-4": {
@@ -40,5 +41,11 @@
     "sort-packages": true
   },
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://nova.laravel.com"
+    }
+  ]
 }
