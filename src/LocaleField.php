@@ -171,7 +171,7 @@ class LocaleField extends Field
         return $this->conditionsUpdated();
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize() : array
     {
         return array_merge(parent::jsonSerialize(), [
             'asHtml' => true,
