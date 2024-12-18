@@ -50,6 +50,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.$route); // This will log the current route object
     const formHeading = document.querySelector('form > * > h1');
     if (formHeading && this.$refs.localeButton) {
       formHeading.style.display = 'flex';
