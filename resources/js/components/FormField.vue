@@ -63,7 +63,7 @@ export default {
       handler(query) {
         const value = this.field.value;
 
-        this.$router.go();
+        Nova.$router.go();
 
         const newLocale = (value && value.locale) || query.locale;
         if (newLocale) this.locale = newLocale;
@@ -83,7 +83,7 @@ export default {
   methods: {
     setInitialValue() {
       const value = this.field.value;
-      const query = this.$router.currentRoute.query;
+      const query = Nova.$router.currentRoute.query;
 
       this.locale = (value && value.locale) || query.locale;
       this.localeParentId = (value && value.localeParentId) || query.localeParentId;

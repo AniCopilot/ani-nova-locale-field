@@ -43,11 +43,11 @@ export default {
     },
 
     localeParentId() {
-      return this.field.value.localeParentId || this.field.value.id || this.$router.currentRoute.query.localeParentId;
+      return this.field.value.localeParentId || this.field.value.id || Nova.$router.currentRoute.query.localeParentId;
     },
 
     disabled() {
-      return this.$router.currentRoute.name === 'create';
+      return Nova.$router.currentRoute.name === 'create';
     },
   },
 
@@ -57,20 +57,20 @@ export default {
       const resourceId = this.field.value.existingLocalisations[newLocale];
 
       if (resourceId) {
-        let routeName = this.$router.currentRoute.name;
+        let routeName = Nova.$router.currentRoute.name;
         if (routeName === 'create') routeName = 'edit';
 
-        this.$router.push({
+        Nova.$router.push({
           name: routeName,
           params: {
             resourceId,
-            resourceName: this.$router.currentRoute.params.resourceName,
+            resourceName: Nova.$router.currentRoute.params.resourceName,
           },
         });
       } else {
-        this.$router.push({
+        Nova.$router.push({
           name: 'create',
-          params: { resourceName: this.$router.currentRoute.params.resourceName },
+          params: { resourceName: Nova.$router.currentRoute.params.resourceName },
           query: { localeParentId: this.localeParentId, locale: newLocale },
         });
       }
