@@ -1,12 +1,13 @@
 <template>
-  <locale-options-list :field="field" :resource-name="resourceName" class="my-2" />
+  <LocaleOptionsList 
+    :field="field" 
+    :resource-name="resourceName" 
+    class="my-2" 
+  />
 </template>
 
-<script>
-import LocaleOptionsList from './LocaleOptionsList';
+<script setup>
+import LocaleOptionsList from './LocaleOptionsList'
 
-export default {
-  components: { LocaleOptionsList },
-  props: ['resourceName', 'field'],
-};
+defineProps(['resourceName', 'field'])
 </script>
