@@ -19,7 +19,7 @@
           query: {
             viaResource: resourceName,
             viaResourceId: resourceId,
-            viaRelationship: router.page.props.route.query.viaRelationship,
+            viaRelationship: route.query.viaRelationship,
           },
         }"
         :title="__('Edit')"
@@ -49,7 +49,7 @@
           query: {
             viaResource: resourceName,
             viaResourceId: resourceId,
-            viaRelationship: router.page.props.route.query.viaRelationship,
+            viaRelationship: route.query.viaRelationship,
             localeParentId: field.value.localeParentId || field.value.id,
             locale: locale,
           },
@@ -75,6 +75,7 @@ import { computed } from 'vue'
 import { router } from '@inertiajs/vue3'
 
 const props = defineProps(['resource', 'resourceName', 'resourceId', 'field'])
+const route = useRoute()
 
 const locales = computed(() => {
   const localeKeys = Object.keys(props.field.value.existingLocalisations)
