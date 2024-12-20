@@ -1,6 +1,10 @@
 <template>
   <div v-if="field.locales">
-    <span v-for="locale in locales" :key="locale" class="flex items-center my-1">
+    <span 
+      v-for="locale in locales" 
+      :key="locale" 
+      class="flex items-center my-1"
+    >
       <!-- Edit link -->
       <router-link
         v-if="field.value.existingLocalisations[locale]"
@@ -15,12 +19,15 @@
           query: {
             viaResource: resourceName,
             viaResourceId: resourceId,
-            viaRelationship: $route.query.viaRelationship,
+            viaRelationship: route.query.viaRelationship,
           },
         }"
         :title="__('Edit')"
       >
-        <svg style="width: 20px; height: 20px; margin-right: 4px;" viewBox="0 0 24 24">
+        <svg 
+          class="w-5 h-5 mr-1" 
+          viewBox="0 0 24 24"
+        >
           <path
             fill="var(--primary)"
             d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
@@ -42,14 +49,20 @@
           query: {
             viaResource: resourceName,
             viaResourceId: resourceId,
-            viaRelationship: $route.query.viaRelationship,
+            viaRelationship: route.query.viaRelationship,
             localeParentId: field.value.localeParentId || field.value.id,
             locale: locale,
           },
         }"
       >
-        <svg style="width: 20px; height: 20px; margin-right: 4px;" viewBox="0 0 24 24">
-          <path fill="var(--primary)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+        <svg 
+          class="w-5 h-5 mr-1" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            fill="var(--primary)" 
+            d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" 
+          />
         </svg>
         {{ locale }}
       </router-link>
@@ -57,14 +70,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ['resource', 'resourceName', 'resourceId', 'field'],
-  computed: {
-    locales() {
-      const localeKeys = Object.keys(this.field.value.existingLocalisations);
-      return localeKeys.filter(l => l !== this.field.value.locale);
-    },
-  },
-};
+<script setup>
+import { computed } from 'vue'
+import { router } from '@inertiajs/vue3'
+
+const props = defineProps(['resource', 'resourceName', 'resourceId', 'field'])
+const route = useRoute()
+
+const locales = computed(() => {
+  const localeKeys = Object.keys(props.field.value.existingLocalisations)
+  return localeKeys.filter(l => l !== props.field.value.locale)
+})
 </script>

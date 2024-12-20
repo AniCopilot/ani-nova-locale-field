@@ -1,10 +1,21 @@
-let mix = require('laravel-mix')
-require('./nova.mix')
+const mix = require('laravel-mix')
+const webpack = require('webpack')
 
 mix
-    .setPublicPath('dist')
-    .js('resources/js/field.js', 'js')
-    .vue({ version: 3 })
-    .sass('resources/sass/field.scss', 'css')
-    .nova('anni-dineva/nova-locale-field')
-    .version()
+  .setPublicPath('dist')
+  .js('resources/js/field.js', 'js')
+  .vue({ version: 3 })
+  .webpackConfig({
+    externals: {
+      vue: 'Vue',
+    },
+    resolve: {
+      alias: {
+        '@': '/vendor/laravel/nova/resources/js',
+      },
+    },
+    output: {
+      uniqueName: 'outline/nova-locale-field',
+    },
+  })
+  .disableNotifications()
